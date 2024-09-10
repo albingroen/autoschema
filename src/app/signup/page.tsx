@@ -28,8 +28,8 @@ export default function Signup() {
 
     resend.emails.send({
       from: "Prisma Builder <hello@percent1.io>",
-      text: `Hey! Here's your magic link: http://localhost:3000/app/signup/${magicToken.token}`,
-      html: `Hey! Here's your magic link: <a href="http://localhost:3000/app/signup/${magicToken.token}">Log in to Prisma Schema Builder</a>`,
+      text: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}`,
+      html: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}">Sign in to Prisma Schema Builder</a>`,
       subject: "Your magic link",
       to: email,
     });

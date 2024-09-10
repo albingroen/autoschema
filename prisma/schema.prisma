@@ -14,27 +14,29 @@ datasource db {
 }
 
 model Schema {
-  id        String    @id @unique @default(cuid())
-  name      String
-  structure Json
-  updatedAt DateTime? @updatedAt
-  createdAt DateTime? @default(now())
+  id          String     @id @unique @default(cuid())
+  name        String
+  structure   Json
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  workspaceId String?
+  updatedAt   DateTime?  @updatedAt
+  createdAt   DateTime?  @default(now())
 }
 
 model User {
-  id          String     @id @unique @default(cuid())
-  email       String     @unique
-  name        String
-  updatedAt   DateTime?  @updatedAt
-  createdAt   DateTime?  @default(now())
-  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
-  workspaceId String?
+  id         String      @id @unique @default(cuid())
+  email      String      @unique
+  name       String
+  updatedAt  DateTime?   @updatedAt
+  createdAt  DateTime?   @default(now())
+  workspaces Workspace[]
 }
 
 model Workspace {
   id        String    @id @unique @default(cuid())
   name      String
   users     User[]
+  schemas   Schema[]
   updatedAt DateTime? @updatedAt
   createdAt DateTime? @default(now())
 }
