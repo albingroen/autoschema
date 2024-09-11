@@ -3,7 +3,7 @@
 import Stack from "@/components/ui/stack";
 import { TypographyError, TypographyP } from "@/components/ui/typography";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function Error({
   error,

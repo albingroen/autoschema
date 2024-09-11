@@ -9,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import LogoutDropdownItem from "./logout-dropdown-item";
 import { HouseIcon } from "lucide-react";
 
 export default async function Navbar() {
@@ -37,7 +36,9 @@ export default async function Navbar() {
               <DropdownMenuItem>My profile</DropdownMenuItem>
             </Link>
 
-            <LogoutDropdownItem />
+            <Link href="/logout" passHref>
+              <DropdownMenuItem>Log out</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </Stack>

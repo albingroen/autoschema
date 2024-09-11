@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import Stack from "@/components/ui/stack";
@@ -22,40 +21,32 @@ export default async function Page() {
   });
 
   return (
-    <Stack
-      spacing="none"
-      direction="vertical"
-      className="max-w-screen-md mx-auto"
-    >
-      <Navbar />
+    <Stack direction="vertical" spacing="huge">
+      <TypographyH1>My workspaces</TypographyH1>
 
-      <Stack direction="vertical" spacing="huge">
-        <TypographyH1>My workspaces</TypographyH1>
-
-        <div className="grid grid-cols-2 gap-4">
-          {user?.workspaces.map((workspace) => (
-            <Link href={`/app/${workspace.id}`} key={workspace.id}>
-              <Card className="p-3 hover:bg-muted group transition">
-                <Stack>
-                  <Avatar className="w-12 h-12">
-                    <AvatarFallback className="group-hover:bg-foreground group-hover:text-background text-xl transition">
-                      {workspace.name[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                  <Stack direction="vertical" spacing="none">
-                    <TypographyH4 className="font-medium">
-                      {workspace.name}
-                    </TypographyH4>
-                    <TypographyP className="text-sm text-muted-foreground">
-                      {workspace.users.length} member(s)
-                    </TypographyP>
-                  </Stack>
+      <div className="grid grid-cols-2 gap-4">
+        {user?.workspaces.map((workspace) => (
+          <Link href={`/app/${workspace.id}`} key={workspace.id}>
+            <Card className="p-3 hover:bg-muted group transition">
+              <Stack>
+                <Avatar className="w-12 h-12">
+                  <AvatarFallback className="group-hover:bg-foreground group-hover:text-background text-xl transition">
+                    {workspace.name[0]}
+                  </AvatarFallback>
+                </Avatar>
+                <Stack direction="vertical" spacing="none">
+                  <TypographyH4 className="font-medium">
+                    {workspace.name}
+                  </TypographyH4>
+                  <TypographyP className="text-sm text-muted-foreground">
+                    {workspace.users.length} member(s)
+                  </TypographyP>
                 </Stack>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Stack>
+              </Stack>
+            </Card>
+          </Link>
+        ))}
+      </div>
     </Stack>
   );
 }

@@ -1,5 +1,4 @@
 import CreateSchema from "@/components/create-schema";
-import Navbar from "@/components/navbar";
 import { Card } from "@/components/ui/card";
 import Stack from "@/components/ui/stack";
 import {
@@ -28,49 +27,39 @@ export default async function Page({
   });
 
   return (
-    <Stack
-      spacing="none"
-      direction="vertical"
-      className="max-w-screen-md mx-auto"
-    >
-      <Navbar />
+    <Stack direction="vertical" spacing="huge" align="start">
+      <Link href="/app" className="link">
+        {"<-"} My workspaces
+      </Link>
 
-      <Stack direction="vertical" spacing="huge" align="start">
-        <Link href="/app" className="link">
-          {"<-"} My workspaces
-        </Link>
+      <TypographyH1>{workspace?.name}</TypographyH1>
 
-        <TypographyH1>{workspace?.name}</TypographyH1>
+      <Stack direction="vertical" spacing="large" className="w-full">
+        <Stack align="center" justify="between">
+          <TypographyH2 className="text-muted-foreground">Schemas</TypographyH2>
 
-        <Stack direction="vertical" spacing="large" className="w-full">
-          <Stack align="center" justify="between">
-            <TypographyH2 className="text-muted-foreground">
-              Schemas
-            </TypographyH2>
-
-            {workspace && <CreateSchema workspaceId={workspace.id} />}
-          </Stack>
-
-          {workspace?.schemas.length ? (
-            <div className="grid grid-cols-2 gap-4">
-              {workspace?.schemas.map((schema) => (
-                <Link href={`/app/${schema.id}`} key={schema.id}>
-                  <Card className="p-3 hover:bg-muted group transition">
-                    <TypographyH4 className="font-medium">
-                      {schema.name}
-                    </TypographyH4>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <Card className="p-5">
-              <TypographyP className="text-center text-muted-foreground">
-                There doesn&apos;t seem to be any schemas here.
-              </TypographyP>
-            </Card>
-          )}
+          {workspace && <CreateSchema workspaceId={workspace.id} />}
         </Stack>
+
+        {workspace?.schemas.length ? (
+          <div className="grid grid-cols-2 gap-4">
+            {workspace?.schemas.map((schema) => (
+              <Link href={`/app/${schema.id}`} key={schema.id}>
+                <Card className="p-3 hover:bg-muted group transition">
+                  <TypographyH4 className="font-medium">
+                    {schema.name}
+                  </TypographyH4>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <Card className="p-5">
+            <TypographyP className="text-center text-muted-foreground">
+              There doesn&apos;t seem to be any schemas here.
+            </TypographyP>
+          </Card>
+        )}
       </Stack>
     </Stack>
   );
