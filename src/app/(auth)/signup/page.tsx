@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import Stack from "@/components/ui/stack";
 import db from "@/lib/prisma";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Resend } from "resend";
 
 export default function Signup() {
@@ -28,13 +29,15 @@ export default function Signup() {
       data: { email, name },
     });
 
-    resend.emails.send({
+    await resend.emails.send({
       from: "Prisma Builder <hello@percent1.io>",
       text: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}`,
       html: `Hey! Here's your magic link: <a href="http://localhost:3000/signup/${magicToken.token}">Sign in to Prisma Schema Builder</a>`,
       subject: "Your magic link",
       to: email,
     });
+
+    redirect("/signup/wait");
   }
 
   return (
@@ -44,8 +47,8 @@ export default function Signup() {
           <CardHeader>
             <CardTitle>Sign up</CardTitle>
             <CardDescription>
-              Welcome to Prisma Schema Builder. Continue to sharing and
-              collaborating on schemas by creating your account below.
+              Continue to sharing and collaborating on schemas by creating your
+              account below.
             </CardDescription>
           </CardHeader>
 
@@ -87,9 +90,9 @@ export default function Signup() {
 
               <Link
                 href="/login"
-                className={buttonVariants({ variant: "ghost" })}
+                className={buttonVariants({ variant: "link" })}
               >
-                Already have an account? Sign in
+                Already have an account? Sign in here
               </Link>
             </Stack>
           </CardFooter>
