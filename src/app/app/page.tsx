@@ -32,7 +32,7 @@ export default async function Page() {
       <Stack direction="vertical" spacing="huge">
         <TypographyH1>My workspaces</TypographyH1>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-4">
           {user?.workspaces.map((workspace) => (
             <Link href={`/app/${workspace.id}`} key={workspace.id}>
               <Card className="p-3 hover:bg-muted group transition">

@@ -4,7 +4,6 @@ import Stack from "@/components/ui/stack";
 import { TypographyError, TypographyP } from "@/components/ui/typography";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
 
 export default function Error({
   error,
@@ -13,8 +12,6 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-  const router = useRouter();
-
   return (
     <Stack
       className="h-screen"
@@ -27,18 +24,7 @@ export default function Error({
         {error?.message || "Something went wrong. Please try again later."}
       </TypographyError>
 
-      <Stack>
-        <Button onClick={reset}>&larr; Go back</Button>
-
-        <Button
-          variant="secondary"
-          onClick={() => {
-            router.push("/app/logout");
-          }}
-        >
-          Sign out
-        </Button>
-      </Stack>
+      <Button onClick={reset}>&larr; Go back</Button>
 
       <TypographyP className="text-muted-foreground text-sm">
         Need help?{" "}

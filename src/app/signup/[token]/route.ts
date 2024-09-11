@@ -18,14 +18,28 @@ export async function GET(
     );
   }
 
-  const user = await db.user.findUnique({
+  let user = await db.user.findUnique({
     where: { email: magicToken.email },
   });
 
   if (!user) {
+    user = await db.user.create({
+      data: {
+        email: magicToken.email,
+        name: magicToken.name || "Unknown",
+        workspaces: {
+          create: {
+            name: `${magicToken.name}'s workspace`,
+          },
+        },
+      },
+    });
+  }
+
+  if (!user) {
     return new Response(
-      "We couldn't find your account. Please sign up before logging in.",
-      { status: 401, statusText: "Unauthorized" },
+      "We couldn't create an account for you. Please try again later.",
+      { status: 500 },
     );
   }
 

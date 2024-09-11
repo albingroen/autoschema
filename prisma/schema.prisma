@@ -44,6 +44,7 @@ model Workspace {
 model MagicToken {
   token     String    @id @unique @default(cuid())
   email     String
+  name      String?
   used      Boolean   @default(false)
   updatedAt DateTime? @updatedAt
   createdAt DateTime? @default(now())

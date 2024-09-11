@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Stack from "@/components/ui/stack";
 import db from "@/lib/prisma";
+import Link from "next/link";
 import { Resend } from "resend";
 
 export default function Signup() {
@@ -21,15 +22,16 @@ export default function Signup() {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const email = values.get("email") as string;
+    const name = values.get("name") as string;
 
     const magicToken = await db.magicToken.create({
-      data: { email },
+      data: { email, name },
     });
 
     resend.emails.send({
       from: "Prisma Builder <hello@percent1.io>",
       text: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}`,
-      html: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}">Sign in to Prisma Schema Builder</a>`,
+      html: `Hey! Here's your magic link: <a href="http://localhost:3000/signup/${magicToken.token}">Sign in to Prisma Schema Builder</a>`,
       subject: "Your magic link",
       to: email,
     });
@@ -49,14 +51,26 @@ export default function Signup() {
 
           <CardContent>
             <Stack direction="vertical" spacing="huge">
-              <Input
-                required
-                autoFocus
-                name="email"
-                id="email"
-                type="email"
-                placeholder="Email"
-              />
+              <Stack direction="vertical" spacing="large">
+                <Input
+                  required
+                  autoFocus
+                  id="email"
+                  name="email"
+                  type="email"
+                  label="Email"
+                  placeholder="jane.doe@email.com"
+                />
+
+                <Input
+                  required
+                  id="name"
+                  name="name"
+                  type="name"
+                  label="Name"
+                  placeholder="Jane Doe"
+                />
+              </Stack>
 
               <Stack align="center">
                 <Checkbox id="terms" />
@@ -68,7 +82,16 @@ export default function Signup() {
           </CardContent>
 
           <CardFooter>
-            <Button className="w-full">Send magic link {"->"}</Button>
+            <Stack direction="vertical" className="w-full" spacing="small">
+              <Button>Send magic link {"->"}</Button>
+
+              <Link
+                href="/login"
+                className={buttonVariants({ variant: "ghost" })}
+              >
+                Already have an account? Sign in
+              </Link>
+            </Stack>
           </CardFooter>
         </Card>
       </form>
