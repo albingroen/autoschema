@@ -1,12 +1,12 @@
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import Stack from "@/components/ui/stack";
 import { TypographyH4, TypographyP } from "@/components/ui/typography";
 import { verifySession } from "@/lib/dal";
 import db from "@/lib/prisma";
-import Link from "next/link";
-import { format, formatDistanceToNow } from "date-fns";
-import Stack from "@/components/ui/stack";
-import { Input } from "@/components/ui/input";
+import { formatDistanceToNow } from "date-fns";
 import { SearchIcon } from "lucide-react";
+import Link from "next/link";
 
 export default async function Page(props: { params: { workspaceId: string } }) {
   const session = await verifySession();
@@ -28,16 +28,19 @@ export default async function Page(props: { params: { workspaceId: string } }) {
         {schemas.map((schema) => (
           <Link href={`/app/${schema.id}`} key={schema.id}>
             <Card className="p-3 hover:bg-muted group transition">
-              <TypographyH4 className="font-medium">{schema.name}</TypographyH4>
+              <Stack direction="vertical" spacing="px">
+                <TypographyH4 className="font-medium">
+                  {schema.name}
+                </TypographyH4>
 
-              {schema.createdAt && (
-                <TypographyP className="text-muted-foreground text-sm line-clamp-1">
-                  Created {format(schema.createdAt, "MMMM dd")}
-                  {schema.updatedAt && schema.updatedAt !== schema.createdAt
-                    ? ` · Updated ${formatDistanceToNow(schema.updatedAt)}`
-                    : ""}
-                </TypographyP>
-              )}
+                {schema.updatedAt && (
+                  <TypographyP className="text-muted-foreground text-sm line-clamp-1">
+                    Updated{" "}
+                    {formatDistanceToNow(schema.updatedAt, { addSuffix: true })}
+                    `
+                  </TypographyP>
+                )}
+              </Stack>
             </Card>
           </Link>
         ))}

@@ -26,11 +26,11 @@ export default async function Page() {
 
       <div className="grid grid-cols-3 gap-4">
         {user?.workspaces.map((workspace) => (
-          <Link href={`/app/${workspace.id}`} key={workspace.id}>
+          <Link href={`/app/${workspace.id}/schemas`} key={workspace.id}>
             <Card className="p-3 hover:bg-muted group transition">
               <Stack>
                 <Avatar className="w-12 h-12">
-                  <AvatarFallback className="group-hover:bg-foreground group-hover:text-background text-xl transition">
+                  <AvatarFallback className="bg-muted group-hover:bg-muted-darker text-xl transition">
                     {workspace.name[0]}
                   </AvatarFallback>
                 </Avatar>

@@ -17,7 +17,7 @@ model Schema {
   id          String     @id @unique @default(cuid())
   name        String
   structure   Json
-  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   workspaceId String?
   updatedAt   DateTime?  @updatedAt
   createdAt   DateTime?  @default(now())

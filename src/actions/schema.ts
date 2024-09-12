@@ -1,5 +1,6 @@
 "use server";
 
+import { AppError } from "@/lib/error";
 import db from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -15,6 +16,6 @@ export async function createSchema(workspaceId: string) {
 
     revalidatePath("/app");
   } catch {
-    return { error: "Failed to create schema" };
+    return { error: AppError.CREATE_SCHEMA };
   }
 }
