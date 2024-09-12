@@ -37,3 +37,7 @@ export async function createSession(userId: string) {
     path: "/",
   });
 }
+
+export async function destroySession() {
+  cookies().delete("session");
+}

@@ -2,7 +2,6 @@
 
 import db from "@/lib/prisma";
 import { createSession } from "@/lib/session";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function completeSignup(
@@ -44,10 +43,4 @@ export async function completeSignup(
   });
 
   redirect("/app");
-}
-
-export async function logout() {
-  cookies().delete("session");
-
-  redirect("/login");
 }

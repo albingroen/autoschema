@@ -36,6 +36,8 @@
 
     --primary-foreground: 0 0% 98%;
 
+    --link: 215 100% 50%;
+
     --secondary: 0 0% 96.1%;
 
     --secondary-foreground: 0 0% 9%;
@@ -83,9 +85,11 @@
 
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
+    --primary: 243 75.4% 58.6%;
 
-    --primary-foreground: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --link: 234 89.5% 73.9%;
 
     --secondary: 0 0% 14.9%;
 

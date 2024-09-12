@@ -6,7 +6,7 @@ export default function Layout(props: { children: React.ReactNode }) {
     <Stack
       spacing="none"
       direction="vertical"
-      className="max-w-screen-md mx-auto"
+      className="max-w-screen-xl mx-auto"
     >
       <Navbar />
       {props.children}

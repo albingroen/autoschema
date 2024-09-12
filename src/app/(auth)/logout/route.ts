@@ -1,8 +1,8 @@
-import { cookies } from "next/headers";
+import { destroySession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 export async function GET() {
-  cookies().delete("session");
+  destroySession();
 
   redirect("/login");
 }
