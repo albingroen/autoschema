@@ -17,7 +17,7 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground shadow-none hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-link underline-offset-4 hover:underline",
       },
@@ -64,7 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {children}
         {Icon && (
-          <Icon className="w-4 stroke-muted-foreground group-hover:stroke-foreground transition" />
+          <Icon className="w-4 group-hover:stroke-foreground transition" />
         )}
       </Comp>
     );
