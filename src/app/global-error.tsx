@@ -29,7 +29,7 @@ export default function Error({
       <TypographyP className="text-muted-foreground text-sm">
         Need help?{" "}
         <Link className="hover:underline" href="/app/logout">
-          support@prismabuilder.io
+          support@autoschema.io
         </Link>
       </TypographyP>
     </Stack>

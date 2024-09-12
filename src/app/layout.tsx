@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Prisma Schema Builder",
-  description: "Prisma Schema Builder",
+  title: "Autoschema",
+  description: "Autoschema",
 };
 
 export default function RootLayout({

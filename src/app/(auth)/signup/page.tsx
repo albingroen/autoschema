@@ -30,9 +30,9 @@ export default function Signup() {
     });
 
     await resend.emails.send({
-      from: "Prisma Builder <hello@percent1.io>",
+      from: "Autoschema <hello@percent1.io>",
       text: `Hey! Here's your magic link: http://localhost:3000/signup/${magicToken.token}`,
-      html: `Hey! Here's your magic link: <a href="http://localhost:3000/signup/${magicToken.token}">Sign in to Prisma Schema Builder</a>`,
+      html: `Hey! Here's your magic link: <a href="http://localhost:3000/signup/${magicToken.token}">Sign in to Autoschema</a>`,
       subject: "Your magic link",
       to: email,
     });
