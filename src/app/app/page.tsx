@@ -1,4 +1,6 @@
+import { createWorkspace } from "@/actions/workspace";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Stack from "@/components/ui/stack";
 import {
@@ -47,6 +49,10 @@ export default async function Page() {
           </Link>
         ))}
       </div>
+
+      <form action={createWorkspace}>
+        <Button>New workspace</Button>
+      </form>
     </Stack>
   );
 }

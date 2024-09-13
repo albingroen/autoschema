@@ -1,13 +1,13 @@
-import DeleteWorkspace from "@/components/delete-workspace";
-import {
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogTitle,
-  AlertDialogDescription,
-} from "@/components/ui/alert-dialog";
+import DeleteWorkspaceButton from "@/components/delete-workspace-button";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
+import Stack from "@/components/ui/stack";
 import { verifySession } from "@/lib/dal";
 import db from "@/lib/prisma";
 import Link from "next/link";
@@ -31,25 +31,25 @@ export default async function Page(props: { params: { workspaceId: string } }) {
   const backLink = `/app/${workspace.id}/settings`;
 
   return (
-    <AlertDialog open>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Delete {workspace.name}?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            workspace and remove your schemas in this workspace.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
+    <Card className="border-destructive">
+      <CardHeader>
+        <CardTitle>Delete {workspace.name}?</CardTitle>
+        <CardDescription>
+          This action cannot be undone. This will permanently delete your
+          workspace and remove your schemas in this workspace.
+        </CardDescription>
+      </CardHeader>
+      <CardFooter>
+        <Stack>
           <Link
             href={backLink}
             className={buttonVariants({ variant: "outline" })}
           >
             Cancel
           </Link>
-          <DeleteWorkspace workspaceId={workspace.id} />
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          <DeleteWorkspaceButton workspaceId={workspace.id} />
+        </Stack>
+      </CardFooter>
+    </Card>
   );
 }

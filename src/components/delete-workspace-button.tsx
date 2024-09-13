@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 const initialState = { error: "" };
 
-export default function DeleteWorkspace(props: { workspaceId: string }) {
+export default function DeleteWorkspaceButton(props: { workspaceId: string }) {
   const deleteWorkspaceWithWorkspaceId = deleteWorkspace.bind(
     null,
     props.workspaceId,
@@ -19,15 +19,15 @@ export default function DeleteWorkspace(props: { workspaceId: string }) {
     initialState,
   );
 
-  useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-    }
-  }, [state.error]);
+  //useEffect(() => {
+  //  if (typeof state.error === "string") {
+  //    toast.error(state.error);
+  //  }
+  //}, [state.error]);
 
   return (
     <form action={formAction}>
-      <Button variant="destructive">Delete</Button>
+      <Button variant="destructive">Yes, delete</Button>
     </form>
   );
 }

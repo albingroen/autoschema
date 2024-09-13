@@ -34,7 +34,7 @@ export default function WorkspaceSidebar(props: { workspaceId: string }) {
         <li
           key={page.href}
           className="group"
-          data-active={page.href === pathname}
+          data-active={pathname.startsWith(page.href)}
         >
           <Link href={page.href}>
             <Card className="px-2.5 py-1.5 border-none bg-transparent shadow-none group-hover:bg-muted-darker group-data-[active=true]:bg-muted-darker transition">

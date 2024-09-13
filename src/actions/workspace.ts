@@ -66,9 +66,32 @@ export async function deleteWorkspace(workspaceId: string) {
         id: workspace.id,
       },
     });
-
-    redirect("/app");
   } catch {
     return { error: AppError.DELETE_WORKSPACE };
   }
+
+  redirect("/app");
+}
+
+export async function createWorkspace() {
+  const session = await verifySession();
+
+  const user = await db.user.findUnique({
+    where: { id: session.userId },
+  });
+
+  if (!user) {
+    return { error: AppError.UNAUTHORIZED };
+  }
+
+  const workspace = await db.workspace.create({
+    data: {
+      name: `${user.name}'s workspace`,
+      users: {
+        connect: { id: user.id },
+      },
+    },
+  });
+
+  redirect(`/app/${workspace.id}/schemas`);
 }
